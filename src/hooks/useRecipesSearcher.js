@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import RecipesService from "../services/Recipes.Service";
+import RecipesService from "services/Recipes.Service";
 
 export default recipeSearch => {
     const [fetchResult, setFetchResult] = useState({recipes: [], loading: false});

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from 'styled-components'
-import '../../utils.css';
 
 const IngredientContainer = styled.div`
     position: relative;
@@ -20,6 +19,6 @@ export default (props) => {
     return (
         <IngredientContainer data-testid='ingredient-container'>
             {props.ingredient.name}&nbsp;
-            <i data-testid='remove-icon' className='fa fa-remove' onClick={() => props.onremove(props.ingredient.id)}/>
+            <i data-testid='remove-icon' className='fa fa-trash-alt' onClick={() => props.onremove(props.ingredient.id)}/>
         </IngredientContainer>);
 }

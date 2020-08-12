@@ -8,7 +8,7 @@ const setupComponent = (props = {}) => {
 }
 
 describe('<Recipe>', () => {
-       it('should contain the name of the recipe', () => {
+    it('should contain the name of the recipe', () => {
         const {getByText} = setupComponent({
             recipe: {
                 name: 'Test recipe name',
@@ -28,5 +28,22 @@ describe('<Recipe>', () => {
             }
         });
         expect(getByTestId('remove-icon')).toBeInTheDocument();
+    });
+
+    it('should invoke the proper parent method', () => {
+        const removeMethod = jest.fn()
+        const testId = 'dummy-id'
+        const {getByTestId} = setupComponent({
+            recipe: {
+                id: testId,
+                name: 'Test recipe name',
+                description: 'Test recipe description',
+                ingredients: [{name: 'test ingredient'}]
+            },
+            onremove: removeMethod
+        });
+
+        getByTestId('remove-icon').click()
+        expect(removeMethod).toHaveBeenCalledWith(testId)
     });
 });

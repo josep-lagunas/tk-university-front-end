@@ -2,12 +2,11 @@ import React from 'react';
 import './App.css';
 import RecipesList from "./components/RecipeList/RecipesList";
 import RecipeForm from "./components/RecipeForm/RecipeForm"
-import {v4 as uuid} from "uuid";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 
 function App() {
     return (
-        <div key={uuid().toString()} className="App">
+        <div className="App">
             <BrowserRouter>
                 <Redirect exact from='/' to='home'/>
                 <Switch>

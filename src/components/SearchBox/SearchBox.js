@@ -10,7 +10,7 @@ const Input = styled.input`
     height: 80%;
     position:relative;
     float:left;
-    font-size: 1.1em;
+    font-size: 1em;
     padding:10px;
     border:none;
     outline:none;
@@ -20,7 +20,7 @@ const Button = styled.button`
     position: relative;
     float: left;
     height: 80%;
-    font-size: 1.1em;
+    font-size: 1em;
     padding: 10px;
     border: none;
     margin-left: 1px;
@@ -44,9 +44,9 @@ export default props => {
 
     return (<SearchBox>
         <form data-testid='form-search' onSubmit={handleSubmit}>
-            <Input name='searchText' id='search-text' type='text' onChange={handleOnChange} value={textToSearch}
+            <Input name='searchText' data-testid='search-text' type='text' onChange={handleOnChange} value={textToSearch}
                    placeholder='recipe name'/>
-            <Button><i className='fa fa-search'></i></Button>
+            <Button data-testid='search-button'><i className='fa fa-search'></i></Button>
         </form>
     </SearchBox>);
 

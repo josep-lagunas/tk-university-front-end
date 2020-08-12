@@ -31,7 +31,7 @@ const RecipeContainer = styled.div`
 
 const Title = styled.p`
         font-family: 'Annie Use Your Telescope', cursive;
-        font-size: 1.5em;
+        font-size: 1.0em;
         width: inherit;
      `;
 
@@ -47,21 +47,16 @@ const IconsContainer = styled.div`
      `;
 
 const Icon = styled.i`
-        font-size: 1.1em;
+        font-size: 1em;
         margin-right: 3px;
         cursor: pointer;
      `;
 
 export default (props) => {
 
-    const history = useHistory();
+    const history = useHistory()
 
-    const performRemoveActions = async evt => {
-        evt.stopPropagation();
-        await props.onremove(props.recipe.id);
-    };
-
-    const openEditRecipe = evt => {
+    const openEditRecipe  = evt => {
         history.push('/edit', props.recipe);
     }
 
@@ -70,7 +65,10 @@ export default (props) => {
                          onClick={openEditRecipe}>
             <Title key={uuid().toString()}>{props.recipe.name}</Title>
             <IconsContainer>
-                <Icon data-testid='remove-icon' className="fa fa-trash" onClick={performRemoveActions}/>
+                <Icon data-testid='remove-icon' className="fa fa-trash-alt" onClick={(evt)=>{
+                    evt.stopPropagation();
+                    props.onremove(props.recipe.id);
+                }}/>
             </IconsContainer>
         </RecipeContainer>
 

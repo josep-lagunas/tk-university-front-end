@@ -8,16 +8,31 @@ const setupComponent = (props = {}) => {
 }
 
 describe('<SeachBox/>', () => {
-    it('Search prop method is invoke on Enter hit', () => {
+    it('Search prop method is invoked on search icon click', () => {
 
         const searchText = 'recipe name';
         const onSearch = jest.fn();
 
-        const {getByTestId} = setupComponent({
-            onSearch: onSearch
-        });
+        const {getByTestId} = setupComponent({onSearch});
+        fireEvent.change(getByTestId('search-text'), {
+            target: {value: searchText}
+        })
+        fireEvent.click(getByTestId('search-button'))
 
-        fireEvent.submit(getByTestId('form-search'));
-        expect(onSearch).toBeCalledTimes(1);
+        expect(onSearch).toHaveBeenCalledWith(searchText);
+    });
+    it('Search prop method is invoked when the form is submitted', async () => {
+
+        const searchText = 'recipe name';
+        const onSearch = jest.fn();
+
+        const {getByTestId} = setupComponent({onSearch});
+        const input = getByTestId('search-text')
+        fireEvent.change(input, {
+            target: {value: searchText}
+        })
+        fireEvent.submit(getByTestId('form-search'))
+
+        expect(onSearch).toHaveBeenCalledWith(searchText);
     });
 });

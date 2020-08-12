@@ -1,5 +1,5 @@
 import {get,post,  put, remove} from "../helpers/ajax.helpers";
-const BASE_URL = 'http://localhost:8080/api/'
+const BASE_URL=process.env.REACT_APP_BASE_URL
 
 const RecipesService = {
     search: async (text) => {

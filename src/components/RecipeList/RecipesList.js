@@ -1,11 +1,11 @@
 import React, {memo, useState} from "react";
 import styled from "styled-components";
 import {v4 as uuid} from 'uuid';
-import Recipe from "../Recipe/Recipe";
+import Recipe from "components/Recipe/Recipe";
 import {useHistory} from 'react-router-dom';
-import SearchBox from "../SearchBox/SearchBox";
-import useRecipesSearcher from "../../hooks/useRecipesSearcher";
-import RecipesService from "../../services/Recipes.Service";
+import SearchBox from "components/SearchBox/SearchBox";
+import useRecipesSearcher from "hooks/useRecipesSearcher";
+import RecipesService from "services/Recipes.Service";
 
 const RecipesContainer = styled.div`
     width: 82vw;
@@ -25,7 +25,7 @@ const AddRecipeButton = styled.div`
     opacity: 1;
     right: 30px;
     line-height: 4vw;
-    font-size:2.5em;
+    font-size:1.5em;
     background: radial-gradient(ellipse at center, rgba(254,204,177,1) 0%,rgba(241,116,50,1) 100%,rgba(251,149,94,1) 100%);
     transition: all 0.3s;
     color: #fff;
@@ -83,7 +83,7 @@ const Loading = styled.div`
     font: arial;
     font-size: 1.2em;
     padding: 3px;
-    border:solid 0.5px #fff;
+    border:solid 0px #fff;
     color: #fff;
     `;
 
@@ -108,7 +108,7 @@ export default memo((props) => {
 
     const onSearch = textToSearch => setSearch({...recipeSearch, text: textToSearch, searchExecuted: true});
     const onRemove = async id => {
-        await RecipesService.delete(id);
+        await RecipesService.delete(id)
         setSearch({...recipeSearch, text: recipeSearch.text, searchExecuted: false});
     }
 
@@ -130,18 +130,17 @@ export default memo((props) => {
     }
 
     const RenderSearchMatching = _ => {
-        return (<>
-            <RecipesContainer key={uuid().toString()}>
+        return (
+            <RecipesContainer>
                 {
-                    recipesState.loading ? <Loading key={uuid().toString()}>loading data...</Loading> :
+                    recipesState.loading ? <Loading>loading data...</Loading> :
                         recipesState
                             .recipes
                             .sort(recipesComparer)
-                            .map(r =>
-                                <Recipe key={uuid().toString()} recipe={r} onremove={onRemove}/>)
+                            .map(r => <Recipe key={uuid().toString()} recipe={r} onremove={onRemove}/>)
                 }
             </RecipesContainer>
-        </>);
+        );
     }
 
     return (

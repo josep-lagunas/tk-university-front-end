@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import Ingredient from "../Ingredient/Ingredient";
+import Ingredient from "components/Ingredient/Ingredient";
 import styled from 'styled-components'
 import {v4 as uuid} from 'uuid';
 import {useHistory} from 'react-router-dom';
-import '../../utils.css';
-import RecipesService from "../../services/Recipes.Service";
+import 'utils.css';
+import RecipesService from "services/Recipes.Service";
 
 const Fields = styled.div`
     margin-top: 5vh;
@@ -31,15 +31,16 @@ const Input = styled.input`
     display: flex;
     width: 65%;     
     margin-left: 3%;
-    font-size: 1.1em;
+    font-size: 1em;
     padding: 3px;
     `;
 
 const TextArea = styled.textarea`
     display: flex;
     width: 65%;
+    height:100px;
     margin-left: 3%;
-    font-size: 1.1em;
+    font-size: 1em;
     padding: 3px;
     font-family: arial;
     `;
@@ -47,7 +48,7 @@ const TextArea = styled.textarea`
 const Label = styled.label`
     display: inline-block;
     width: 27%;
-    font-size: 1.1em;
+    font-size: 1em;
     text-align: right;
     font-family: arial;
     `;
@@ -75,7 +76,7 @@ const ButtonsWrapper = styled.div`
 const Button = styled.button`
     margin-right: 10px;
     width: auto;
-    font-size: 1.1em;
+    font-size: 1em;
     cursor:pointer;
     padding: 3px;
     `;
@@ -86,7 +87,7 @@ const SuccessButton = styled.button`
     border-radius: 1px;
     padding: 3px;
     color: darkgreen;
-    font-size: 1.1em;
+    font-size: 1em;
     cursor:pointer;
     `;
 
